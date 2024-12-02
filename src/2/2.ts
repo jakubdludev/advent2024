@@ -1,20 +1,13 @@
-import { printAnswers } from '../../utils';
+// Advent of Code 2024 - Day 
 
-// Advent of Code 2024 - Day 2
-interface Input {
-    leftColumn: number[];
-    rightColumn: number[];
+export function parseInput(inputRaw: string): number[][] {
+    return inputRaw.split('\n').map((row)=> {
+        return row.split(' ').map((level) => parseInt(level));
+    })
 }
 
-
 export function getAnswer(inputRaw: string) {
-    const a = 5
-    const b = 5
-    printAnswers({a, b});
-    return {
-        a,
-        b,
-    };
+
 }
 
 
