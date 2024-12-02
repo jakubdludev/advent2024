@@ -1,6 +1,7 @@
 import { argv } from "bun";
 import { getInput } from "./getInput";
-import { getAnswer, parseInput } from "./src/1/1";
+import { getAnswer } from "./src/1/1";
+import { printAnswers } from "./utils";
 
 
 const day = argv[2];
@@ -21,6 +22,7 @@ switch (day) {
     case "1":
         const input = await getInput("1");
         const answers = getAnswer(input);
+        printAnswers(answers);
         saveOuput(answers, "1");
         break;
     default:

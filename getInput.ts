@@ -1,5 +1,18 @@
 import { env } from "bun";
 
+export async function getTestInput(day: string | number): Promise<string> {
+    try {
+        const input = await Bun.file(`./src/${day}/testInput.txt`).text();
+        if(input.at(-1) === "\n") {
+            return input.slice(0, -1);
+        }
+        return input;
+    } catch (error) {
+        console.log(`Test input file not found in src/${day}/testInput.txt`);
+        process.exit(1);
+    }
+}
+
 export async function getInput(day: string): Promise<string> {
     // try to get input from file
     try {

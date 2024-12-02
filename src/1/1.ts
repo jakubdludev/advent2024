@@ -1,4 +1,3 @@
-import colors from "colors"
 
 
 // Advent of Code 2024 - Day 1
@@ -65,16 +64,10 @@ export function calculateSimilarityScore(input: Input): number {
 export function getAnswer(inputRaw: string) {
     const a = sumDistances(calculateDistance(sortInput(parseInput(inputRaw))));
     const b = calculateSimilarityScore(parseInput(inputRaw));
-    printAnswers(a, b);
     return {
         a,
         b,
     };
 }
-function printAnswers(a: number, b: number) {
-    console.log(colors.bgGreen('-------------------'));
-    console.log(colors.green(`answer a: ${a}`));
-    console.log(colors.green(`answer b: ${b}`));
-    console.log(colors.bgGreen('-------------------'));
-}
+
 
