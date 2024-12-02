@@ -1,5 +1,7 @@
 // Advent of Code 2024 - Day
 
+import type { Answer } from "../../types";
+
 export function parseInput(inputRaw: string): number[][] {
   return inputRaw.split("\n").map((row) => {
     return row.split(" ").map((level) => parseInt(level));
@@ -46,4 +48,27 @@ export function levelsAreGraduallyChanging(
   return levelsAreGraduallyIncreasing;
 }
 
-export function getAnswer(inputRaw: string) {}
+export function getAnswerA(inputRaw: string) {
+  const parsedInput = parseInput(inputRaw);
+  const levelsAreEitherDecreasingOrIncreasingResult = parsedInput.map((row) =>
+    levelsAreEitherDecreasingOrIncreasing(row)
+  );
+  const levelsAreGraduallyChangingResult = parsedInput.map((row) =>
+    levelsAreGraduallyChanging(row, 3, 1)
+  );
+
+  const processedInput = levelsAreEitherDecreasingOrIncreasingResult.map(
+    (value, index) => {
+      return value && levelsAreGraduallyChangingResult[index];
+    }
+  );
+
+  return processedInput.filter((value) => value).length;
+}
+
+export function getAnswer(inputRaw: string): Answer {
+  return {
+    a: getAnswerA(inputRaw),
+    b: 5,
+  };
+}

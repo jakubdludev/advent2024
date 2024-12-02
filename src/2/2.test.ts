@@ -1,6 +1,7 @@
 import { expect, describe, it, test } from "bun:test";
 import { getTestInput } from "../../getInput";
 import {
+    getAnswerA,
   levelsAreEitherDecreasingOrIncreasing,
   levelsAreGraduallyChanging,
   parseInput,
@@ -38,5 +39,10 @@ describe("Day 2", () => {
       levelsAreGraduallyChanging(row, 3, 1)
     );
     expect(result).toEqual(expectedResult);
+  });
+
+  it("should return the answer for first part", () => {
+    getAnswerA(testInput);
+    expect(getAnswerA(testInput)).toEqual(2);
   });
 });
