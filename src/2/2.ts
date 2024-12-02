@@ -69,6 +69,6 @@ export function getAnswerA(inputRaw: string) {
 export function getAnswer(inputRaw: string): Answer {
   return {
     a: getAnswerA(inputRaw),
-    b: 5,
+    b: 'not yet solved',
   };
 }

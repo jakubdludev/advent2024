@@ -1,4 +1,4 @@
 export interface Answer {
-    a: number;
-    b: number;
+    a: number | string;
+    b: number | string;
   }

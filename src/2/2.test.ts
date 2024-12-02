@@ -1,4 +1,4 @@
-import { expect, describe, it, test } from "bun:test";
+import { expect, describe, it } from "bun:test";
 import { getTestInput } from "../../getInput";
 import {
     getAnswerA,
@@ -8,8 +8,8 @@ import {
 } from "./2";
 const testInput = await getTestInput("2");
 
-describe("Day 2", () => {
-  it("should parse input (each row is a list of levels", () => {
+describe("Day 2 functions", () => {
+  it("parseInput should parse input (each row is a list of levels", () => {
     const expectedParsedInput = [
       [7, 6, 4, 2, 1],
       [1, 2, 7, 8, 9],
@@ -23,7 +23,7 @@ describe("Day 2", () => {
     expect(parseInput(testInput)).toEqual(expectedParsedInput);
   });
 
-  it("should return true if levels in a row are either decreasing or increasing", () => {
+  it("levelsAreEitherDecreasingOrIncreasing should return true if levels in a row are either decreasing or increasing", () => {
     const parsedInput = parseInput(testInput);
     const expectedResult = [true, true, true, false, false, true];
     const result = parsedInput.map((row) =>
@@ -32,7 +32,7 @@ describe("Day 2", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  it("should return true if levels are gradually stepped", () => {
+  it("levelsAreGraduallyChanging should return true if levels are gradually stepped with specified criteria", () => {
     const parsedInput = parseInput(testInput);
     const expectedResult = [true, false, false, true, false, true];
     const result = parsedInput.map((row) =>
@@ -41,7 +41,7 @@ describe("Day 2", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  it("should return the answer for first part", () => {
+  it("getAnswerA should return the answer for first part", () => {
     getAnswerA(testInput);
     expect(getAnswerA(testInput)).toEqual(2);
   });
