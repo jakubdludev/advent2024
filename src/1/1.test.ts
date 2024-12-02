@@ -1,6 +1,8 @@
+import { getTestInput } from "../../getInput";
 import { parseInput, sortInput, calculateDistance, sumDistances, calculateSimilarityScore, getAnswer } from "./1";
 import { expect, describe, it } from "bun:test";
-const testInput = await Bun.file("./testInput.txt").text();
+
+const testInput = await getTestInput('1');
 
 describe("Day 1", () => {
     it("should parse input and split into left / right columns", () => {
