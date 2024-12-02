@@ -48,27 +48,50 @@ export function levelsAreGraduallyChanging(
   return levelsAreGraduallyIncreasing;
 }
 
-export function getAnswerA(inputRaw: string) {
-  const parsedInput = parseInput(inputRaw);
-  const levelsAreEitherDecreasingOrIncreasingResult = parsedInput.map((row) =>
-    levelsAreEitherDecreasingOrIncreasing(row)
-  );
-  const levelsAreGraduallyChangingResult = parsedInput.map((row) =>
-    levelsAreGraduallyChanging(row, 3, 1)
-  );
+export function levelsAreEitherDecreasingOrIncreasingAndAreGraduallyChanging(
+    row: number[]
+  ): boolean {
+    return (
+      levelsAreEitherDecreasingOrIncreasing(row) &&
+      levelsAreGraduallyChanging(row, 3, 1)
+    );
+  }
 
-  const processedInput = levelsAreEitherDecreasingOrIncreasingResult.map(
-    (value, index) => {
-      return value && levelsAreGraduallyChangingResult[index];
+export function tryToFixRow(row: number[]): number[] {
+    if(levelsAreEitherDecreasingOrIncreasingAndAreGraduallyChanging(row)) {
+        return row;
     }
-  );
+    let fixedRow = row;
 
-  return processedInput.filter((value) => value).length;
+    for(let i = 0; i < row.length; i++) {
+        const newRow = row.filter((_, index) => index !== i);
+        if(levelsAreEitherDecreasingOrIncreasingAndAreGraduallyChanging(newRow)) {
+            console.log(`fixed row: ${row} -> ${newRow}`)
+            fixedRow = newRow;
+            break;
+        }
+    }
+    return fixedRow;
+  }
+
+export function getAnswerA(parsedInput: number[][]) {
+    const result = parsedInput.map(levelsAreEitherDecreasingOrIncreasingAndAreGraduallyChanging)
+    return result.filter((value) => value).length;
 }
 
+
+export function getAnswerB(parsedInput: number[][]): number {
+    const dampened = parsedInput.map(tryToFixRow);
+    const result = dampened.map(levelsAreEitherDecreasingOrIncreasingAndAreGraduallyChanging)
+    return result.filter((value) => value).length;
+}
+
+
 export function getAnswer(inputRaw: string): Answer {
+  const parsedInput = parseInput(inputRaw);
+  
   return {
-    a: getAnswerA(inputRaw),
-    b: 'not yet solved',
+    a: getAnswerA(parsedInput),
+    b: getAnswerB(parsedInput),
   };
 }
