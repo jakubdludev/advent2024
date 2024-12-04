@@ -3,6 +3,7 @@ import { getInput } from "./getInput";
 import { getAnswer as getAnswerDay1 } from "./src/1/1";
 import { getAnswer as getAnswerDay2 } from "./src/2/2";
 import { getAnswer as getAnswerDay3 } from "./src/3/3";
+import { getAnswer as getAnswerDay4 } from "./src/4/4";
 import { printAnswers } from "./utils";
 import type { Answer } from "./types";
 
@@ -34,6 +35,12 @@ switch (day) {
     printAnswers(answers3);
     saveOuput(answers3, "3");
     break;
+    case "4":
+      const input4 = await getInput("4");
+      const answers4 = getAnswerDay4(input4);
+      printAnswers(answers4);
+      saveOuput(answers4, "4");
+      break;
   default:
     console.log("Please specify day to run, for example:");
     console.log("bun run app.ts 1");
