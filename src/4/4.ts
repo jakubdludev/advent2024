@@ -85,9 +85,41 @@ export function getAnswerA(parsedInput: string): number {
   return XMASES;
 }
 
+export function splitInto3by3Boxes(grid: string[][]): string[][][] {
+  const boxes = [];
+  const numRows = grid.length;
+  const numCols = grid[0].length;
+
+  for (let i = 0; i <= numRows - 3; i++) {
+    for (let j = 0; j <= numCols - 3; j++) {
+      const box = [];
+      for (let k = 0; k < 3; k++) {
+        box.push(grid[i + k].slice(j, j + 3));
+      }
+      boxes.push(box);
+    }
+  }
+
+  return boxes;
+}
+
+export function checkForMas(box: string[][]): boolean {
+  const boxString = `${box[0][0]}${box[0][2]}${box[1][1]}${box[2][0]}${box[2][2]}`;
+  const possibleStrings = ['MSAMS', 'SMASM', 'SSAMM', 'MMASS', 'MMASS'];
+  
+  return possibleStrings.some((str) => boxString.includes(str));
+}
+
+const prettyPrintBox = (box: string[][]) => {
+  console.log('Box:');
+  console.table(box);
+}
 
 export function getAnswerB(parsedInput: string): number {
-  return 0;
+  const boxes = splitInto3by3Boxes(parsedInput.split('\n').map(row => row.split('')));
+  boxes.forEach(prettyPrintBox);
+  const X_MASES = boxes.filter(checkForMas).length;
+  return X_MASES;
 }
 
 export function getAnswer(inputRaw: string): Answer {
