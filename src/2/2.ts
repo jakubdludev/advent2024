@@ -1,4 +1,4 @@
-// Advent of Code 2024 - Day
+// Advent of Code 2024 - Day 2
 
 import type { Answer } from "../../types";
 
@@ -66,7 +66,6 @@ export function tryToFixRow(row: number[]): number[] {
     for(let i = 0; i < row.length; i++) {
         const newRow = row.filter((_, index) => index !== i);
         if(levelsAreEitherDecreasingOrIncreasingAndAreGraduallyChanging(newRow)) {
-            console.log(`fixed row: ${row} -> ${newRow}`)
             fixedRow = newRow;
             break;
         }

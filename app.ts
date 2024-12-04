@@ -2,6 +2,7 @@ import { argv } from "bun";
 import { getInput } from "./getInput";
 import { getAnswer as getAnswerDay1 } from "./src/1/1";
 import { getAnswer as getAnswerDay2 } from "./src/2/2";
+import { getAnswer as getAnswerDay3 } from "./src/3/3";
 import { printAnswers } from "./utils";
 import type { Answer } from "./types";
 
@@ -26,6 +27,12 @@ switch (day) {
     const answers2 = getAnswerDay2(input2);
     printAnswers(answers2);
     saveOuput(answers2, "2");
+    break;
+  case "3":
+    const input3 = await getInput("3");
+    const answers3 = getAnswerDay3(input3);
+    printAnswers(answers3);
+    saveOuput(answers3, "3");
     break;
   default:
     console.log("Please specify day to run, for example:");
