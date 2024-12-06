@@ -117,7 +117,6 @@ const prettyPrintBox = (box: string[][]) => {
 
 export function getAnswerB(parsedInput: string): number {
   const boxes = splitInto3by3Boxes(parsedInput.split('\n').map(row => row.split('')));
-  boxes.forEach(prettyPrintBox);
   const X_MASES = boxes.filter(checkForMas).length;
   return X_MASES;
 }
